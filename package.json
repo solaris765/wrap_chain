@@ -6,6 +6,7 @@
   "author": "Mason Rhodes",
   "license": "MIT",
   "private": false,
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "scripts": {
     "test": "mocha"
   },
