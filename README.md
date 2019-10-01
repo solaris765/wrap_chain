@@ -1,5 +1,6 @@
 # Wrap Chain
 [![Build Status](https://travis-ci.org/solaris765/wrap_chain.svg?branch=master)](https://travis-ci.org/solaris765/wrap_chain)
+[![Coverage Status](https://coveralls.io/repos/github/solaris765/wrap_chain/badge.svg?branch=test_travis)](https://coveralls.io/github/solaris765/wrap_chain?branch=test_travis)
 [![dependencies Status](https://david-dm.org/solaris765/wrap_chain/status.svg)](https://david-dm.org/solaris765/wrap_chain)
 [![devDependencies Status](https://david-dm.org/solaris765/wrap_chain/dev-status.svg)](https://david-dm.org/solaris765/wrap_chain?type=dev)
 
