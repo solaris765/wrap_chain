@@ -1,5 +1,7 @@
 # Wrap Chain
 [![Build Status](https://travis-ci.org/solaris765/wrap_chain.svg?branch=master)](https://travis-ci.org/solaris765/wrap_chain)
+[![dependencies Status](https://david-dm.org/solaris765/wrap_chain/status.svg)](https://david-dm.org/solaris765/wrap_chain)
+[![devDependencies Status](https://david-dm.org/solaris765/wrap_chain/dev-status.svg)](https://david-dm.org/solaris765/wrap_chain?type=dev)
 
 A chain class that can be instantiated or used statically.
 
