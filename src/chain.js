@@ -2,7 +2,6 @@ module.exports = class chain {
     constructor() {
         this.chain = async cb => {
             if (cb) {
-                //
                 let err = undefined
                 let data = undefined
                 if (cb.constructor.name === `AsyncFunction`)
@@ -19,8 +18,6 @@ module.exports = class chain {
                     } catch (e) {
                         err = e
                     }
-                else throw new Error(`cb is not an instance of a Function`)
-                //
                 if (err) throw err
                 return data
             }

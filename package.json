@@ -11,13 +11,13 @@
     "repository": "https://github.com/solaris765/wrap_chain.git"
   },
   "scripts": {
-    "test": "nyc mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test": "nyc --reporter=lcov mocha",
+    "coverage": "codecov"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
     "chai": "^4.2.0",
-    "coveralls": "^3.0.6",
+    "codecov": "^3.6.1",
     "eslint": "^6.5.0",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-mocha": "^6.1.1",

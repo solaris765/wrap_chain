@@ -101,6 +101,62 @@ function run_tests(get_chain) {
 
         expect(good).to.equal(true)
     })
+
+    it(`should handle error in async "run"`, async function() {
+        let err = await get_chain()
+            .run(async () => {
+                throw new Error(`TEST ERROR`)
+            })
+            .catch(e => e)
+
+        expect(err.message).to.equal(`TEST ERROR`)
+    })
+
+    it(`should handle error in synchronous "run"`, async function() {
+        let err = await get_chain()
+            .run(() => {
+                throw new Error(`TEST ERROR`)
+            })
+            .catch(e => e)
+
+        expect(err.message).to.equal(`TEST ERROR`)
+    })
+
+    it(`should throw error "run" cb is not an instance of a Function`, async function() {
+        let err = await get_chain()
+            .run(2)
+            .catch(e => e)
+
+        expect(err.message).to.equal(`cb must be an instance of a function`)
+    })
+
+    it(`should pass errors through links Synchronously`, async function() {
+        let err = await get_chain()
+            .link()
+            .run(() => {
+                throw new Error(`TEST ERROR`)
+            })
+            .catch(e => e)
+
+        expect(err.message).to.equal(`TEST ERROR`)
+    })
+
+    it(`should pass errors through links Asynchronously`, async function() {
+        let err = await get_chain()
+            .link()
+            .run(async () => {
+                throw new Error(`TEST ERROR`)
+            })
+            .catch(e => e)
+
+        expect(err.message).to.equal(`TEST ERROR`)
+    })
+
+    it(`should allow undefined cb`, async function() {
+        await get_chain()
+            .link()
+            .run(undefined)
+    })
 }
 
 describe(`Chain Class`, function() {
