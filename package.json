@@ -6,13 +6,17 @@
   "author": "Mason Rhodes",
   "license": "MIT",
   "private": false,
-  "publishConfig": { "registry": "https://npm.pkg.github.com/solaris765" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/solaris765",
+    "coveralls": "jest --coverage && cat ./lcov.info | coveralls"
+  },
   "scripts": {
     "test": "mocha"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
     "chai": "^4.2.0",
+    "coveralls": "^3.0.6",
     "eslint": "^6.5.0",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-mocha": "^6.1.1",
