@@ -1,0 +1,22 @@
+{
+  "name": "wrap_op",
+  "version": "1.0.0",
+  "description": "Wraps a callback in a chain with pre and post ops for each link",
+  "main": "src/chain.js",
+  "author": "Mason Rhodes",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "chai": "^4.2.0",
+    "eslint": "^6.5.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-mocha": "^6.1.1",
+    "eslint-plugin-prettier": "^3.1.1",
+    "mocha": "^6.2.1",
+    "prettier": "^1.18.2"
+  }
+}
