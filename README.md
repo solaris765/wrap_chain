@@ -1,4 +1,6 @@
 # Wrap Chain
+[![Build Status](https://travis-ci.org/solaris765/wrap_chain.svg?branch=master)](https://travis-ci.org/solaris765/wrap_chain)
+
 A chain class that can be instantiated or used statically.
 
 Each "Link" member in the chain has a `pre` and `post` callback that runs before and after the next link in the chain.
