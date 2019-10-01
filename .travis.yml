@@ -1,0 +1,12 @@
+sudo: false
+language: node_js
+node_js:
+- '8'
+cache:
+  directories:
+  - node_modules
+before_install:
+- yarn upgrade
+install:
+- yarn install
+after_success: yarn coverage
