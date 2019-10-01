@@ -36,9 +36,9 @@ This class is meant to be extended. For my specific use case, I use it in mocha 
 ### Ex.
 ``` javascript
 class mongo_wrapper extends chain {
-    get mongo(){
-        constructor(){super()}
+    constructor(){super()}
 
+    get mongo(){
         return this.link(
             async () => {
                 await MongoClient.connect(URI)
