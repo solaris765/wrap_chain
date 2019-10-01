@@ -81,6 +81,8 @@ function run_tests(get_chain) {
     })
 
     it(`should allow mutating during chain`, async function() {
+        this.slow(750)
+
         let result = { done: false }
         await get_chain()
             .link(async () => {
@@ -93,6 +95,8 @@ function run_tests(get_chain) {
     })
 
     it(`should return the results of "run" through links`, async function() {
+        this.slow(750)
+
         let good = await get_chain()
             .link(async () => {
                 await timeout(250)
@@ -100,6 +104,62 @@ function run_tests(get_chain) {
             .run(() => true)
 
         expect(good).to.equal(true)
+    })
+
+    it(`should handle error in async "run"`, async function() {
+        let err = await get_chain()
+            .run(async () => {
+                throw new Error(`TEST ERROR`)
+            })
+            .catch(e => e)
+
+        expect(err.message).to.equal(`TEST ERROR`)
+    })
+
+    it(`should handle error in synchronous "run"`, async function() {
+        let err = await get_chain()
+            .run(() => {
+                throw new Error(`TEST ERROR`)
+            })
+            .catch(e => e)
+
+        expect(err.message).to.equal(`TEST ERROR`)
+    })
+
+    it(`should throw error "run" cb is not an instance of a Function`, async function() {
+        let err = await get_chain()
+            .run(2)
+            .catch(e => e)
+
+        expect(err.message).to.equal(`cb must be an instance of a function`)
+    })
+
+    it(`should pass errors through links Synchronously`, async function() {
+        let err = await get_chain()
+            .link()
+            .run(() => {
+                throw new Error(`TEST ERROR`)
+            })
+            .catch(e => e)
+
+        expect(err.message).to.equal(`TEST ERROR`)
+    })
+
+    it(`should pass errors through links Asynchronously`, async function() {
+        let err = await get_chain()
+            .link()
+            .run(async () => {
+                throw new Error(`TEST ERROR`)
+            })
+            .catch(e => e)
+
+        expect(err.message).to.equal(`TEST ERROR`)
+    })
+
+    it(`should allow undefined cb`, async function() {
+        await get_chain()
+            .link()
+            .run(undefined)
     })
 }
 
@@ -112,6 +172,19 @@ describe(`Chain Class`, function() {
 
         // eslint-disable-next-line mocha/no-setup-in-describe
         run_tests(() => new chain())
+
+        describe(`_chain extra tests`, function() {
+            it(`should throw error if cb is not an instance of a function`, async function() {
+                let err = await new chain()._chain(2).catch(e => e)
+                expect(err.message).to.equal(
+                    `cb is not an instance of a Function`
+                )
+            })
+
+            it(`should allow chain to be pass an undefined cb`, async function() {
+                await new chain()._chain(undefined).catch(e => e)
+            })
+        })
     })
 
     describe(`Static`, function() {

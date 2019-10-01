@@ -1,8 +1,7 @@
 module.exports = class chain {
     constructor() {
-        this.chain = async cb => {
+        this._chain = async cb => {
             if (cb) {
-                //
                 let err = undefined
                 let data = undefined
                 if (cb.constructor.name === `AsyncFunction`)
@@ -20,7 +19,7 @@ module.exports = class chain {
                         err = e
                     }
                 else throw new Error(`cb is not an instance of a Function`)
-                //
+
                 if (err) throw err
                 return data
             }
@@ -30,7 +29,7 @@ module.exports = class chain {
     async run(cb = () => {}) {
         if (![`Function`, `AsyncFunction`].includes(cb.constructor.name))
             throw new Error(`cb must be an instance of a function`)
-        return this.chain(cb) // Execute the chain with final callback
+        return this._chain(cb) // Execute the chain with final callback
     }
     static async run(cb) {
         return new chain().run(cb)
@@ -42,8 +41,8 @@ module.exports = class chain {
      * @param {Function} after_cb runs after evaluating the rest of the chain
      */
     link(before_cb, after_cb) {
-        let previous_chain_item = this.chain // backup old chain
-        this.chain = async next_chain_item =>
+        let previous_chain_item = this._chain // backup old chain
+        this._chain = async next_chain_item =>
             await previous_chain_item(async () => {
                 /** BEFORE FINAL CALL */
                 if (before_cb) {
