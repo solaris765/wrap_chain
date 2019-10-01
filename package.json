@@ -6,7 +6,7 @@
   "author": "Mason Rhodes",
   "license": "MIT",
   "private": false,
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/solaris765" },
   "scripts": {
     "test": "mocha"
   },
