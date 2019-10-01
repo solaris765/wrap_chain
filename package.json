@@ -1,5 +1,5 @@
 {
-  "name": "wrap_op",
+  "name": "wrap_chain",
   "version": "1.0.0",
   "description": "Wraps a callback in a chain with pre and post ops for each link",
   "main": "src/chain.js",
